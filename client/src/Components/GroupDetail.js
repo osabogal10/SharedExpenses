@@ -14,13 +14,20 @@ class GroupDetail extends Component {
         name: 'Grupo',
         participants: [],
         expenses: [],
-        viewDetail:false
-      }
+      },
+      viewDetail:[]
     }
   }
 
-  toggleDetail = () =>{
-    this.setState({viewDetail:!this.state.viewDetail})
+  toggleDetail = (e,data) =>{
+    let d = this.state.viewDetail
+    if(this.state.viewDetail.includes(data.id)){
+      d.splice(this.state.viewDetail.indexOf(data.id),1)
+    }
+    else{
+      d.push(data.id)
+    }
+    this.setState({viewDetail:d})
   }
 
   componentDidMount() {
@@ -64,10 +71,12 @@ class GroupDetail extends Component {
                           </Statistic>
                           <Button
                             floated='right'
+                            id={e.id}
                             onClick={this.toggleDetail}
                           >Ver Detalle</Button>
                           <ExpenseDetail
-                            visible={this.state.viewDetail}
+                            id={e.id}
+                            visible={this.state.viewDetail.includes(e.id)}
                           />
                         </GridColumn>
                         <GridColumn width={4}>

@@ -1,6 +1,7 @@
 import axios from 'axios'
 
-const baseURL = 'https://shielded-springs-79676.herokuapp.com/api/1.0/app'
+//const baseURL = 'https://shielded-springs-79676.herokuapp.com/api/1.0/app'
+const baseURL = ''
 
 const getUser = (token, onComplete, onError) => {
   axios.get(`${baseURL}/user`,
